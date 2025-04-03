@@ -5,6 +5,16 @@ VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingCollector.Api", "MeterReadingCollector.Api\MeterReadingCollector.Api.csproj", "{02745CC3-9AA7-4C72-B200-E976F8419D4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingCollector.Business", "MeterReadingCollector.Business\MeterReadingCollector.Business.csproj", "{6B6D9F35-4BA4-4417-A64F-580AFECEAB85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7EF689BB-F8D6-4680-BF15-6F327B92B1FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E27BF04B-5C29-4D1D-8159-29365FE90BD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingCollector.Tests", "MeterReadingCollector.Tests\MeterReadingCollector.Tests.csproj", "{A0816061-0A83-4236-995E-3BCAC18789E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingCollector.Data", "MeterReadingCollector.Data\MeterReadingCollector.Data.csproj", "{51EA6C5C-D80E-4458-A366-F67B4AEAC2E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +25,26 @@ Global
 		{02745CC3-9AA7-4C72-B200-E976F8419D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02745CC3-9AA7-4C72-B200-E976F8419D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02745CC3-9AA7-4C72-B200-E976F8419D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B6D9F35-4BA4-4417-A64F-580AFECEAB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B6D9F35-4BA4-4417-A64F-580AFECEAB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B6D9F35-4BA4-4417-A64F-580AFECEAB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B6D9F35-4BA4-4417-A64F-580AFECEAB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0816061-0A83-4236-995E-3BCAC18789E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0816061-0A83-4236-995E-3BCAC18789E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0816061-0A83-4236-995E-3BCAC18789E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0816061-0A83-4236-995E-3BCAC18789E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51EA6C5C-D80E-4458-A366-F67B4AEAC2E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51EA6C5C-D80E-4458-A366-F67B4AEAC2E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51EA6C5C-D80E-4458-A366-F67B4AEAC2E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51EA6C5C-D80E-4458-A366-F67B4AEAC2E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02745CC3-9AA7-4C72-B200-E976F8419D4E} = {7EF689BB-F8D6-4680-BF15-6F327B92B1FA}
+		{6B6D9F35-4BA4-4417-A64F-580AFECEAB85} = {7EF689BB-F8D6-4680-BF15-6F327B92B1FA}
+		{A0816061-0A83-4236-995E-3BCAC18789E7} = {E27BF04B-5C29-4D1D-8159-29365FE90BD6}
+		{51EA6C5C-D80E-4458-A366-F67B4AEAC2E7} = {7EF689BB-F8D6-4680-BF15-6F327B92B1FA}
 	EndGlobalSection
 EndGlobal
