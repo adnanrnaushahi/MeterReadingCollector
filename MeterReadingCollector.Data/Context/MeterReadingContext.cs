@@ -16,11 +16,10 @@ public class MeterReadingContext(DbContextOptions<MeterReadingContext> options) 
             .HasIndex(m => new { m.AccountId, m.MeterReadingDateTime })
             .IsUnique();
 
-        // Configure relationship
         modelBuilder.Entity<MeterReading>()
             .HasOne(m=>m.Account)
             .WithMany()
-            .HasForeignKey("LoanId")
+            .HasForeignKey(m => m.AccountId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

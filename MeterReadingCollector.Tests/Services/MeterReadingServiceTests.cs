@@ -13,7 +13,7 @@ public class MeterReadingServiceTests
 {
     private readonly Mock<IMeterReadingValidator> _mockValidator;
     private readonly Mock<IMeterReadingRepository> _mockRepository;
-    private readonly Mock<ICsvParser> _mockCsvParser;
+    private readonly Mock<ICsvDataExtractor> _mockCsvParser;
     private readonly Mock<IFormFile> _mockFile;
     private readonly MeterReadingService _service;
 
@@ -21,7 +21,7 @@ public class MeterReadingServiceTests
     {
         _mockValidator = new Mock<IMeterReadingValidator>();
         _mockRepository = new Mock<IMeterReadingRepository>();
-        _mockCsvParser = new Mock<ICsvParser>();
+        _mockCsvParser = new Mock<ICsvDataExtractor>();
         _mockFile = new Mock<IFormFile>();
 
         _mockFile.Setup(file => file.OpenReadStream()).Returns(new MemoryStream());

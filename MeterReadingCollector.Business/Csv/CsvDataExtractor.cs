@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using CsvHelper;
 
-namespace MeterReadingCollector.Business.CsvParser;
+namespace MeterReadingCollector.Business.Csv;
 
-public class CsvParser : ICsvParser
+public class CsvDataExtractor : ICsvDataExtractor
 {
     public List<Models.MeterReading> LoadMeterReadingFromCsv(Stream stream)
     {
