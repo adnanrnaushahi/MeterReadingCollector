@@ -1,4 +1,5 @@
-﻿using MeterReadingCollector.Business.Mapper;
+﻿using MeterReadingCollector.Business.CsvParser;
+using MeterReadingCollector.Business.Mapper;
 using MeterReadingCollector.Business.Models;
 using MeterReadingCollector.Business.Validators;
 using MeterReadingCollector.Data.Repositories;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace MeterReadingCollector.Business.Services;
 
-public class MeterReadingService(IMeterReadingValidator validator, IMeterReadingRepository repository)
+public class MeterReadingService(IMeterReadingValidator validator, IMeterReadingRepository repository, ICsvParser csvParser)
     : IMeterReadingService
 {
 
@@ -19,7 +20,7 @@ public class MeterReadingService(IMeterReadingValidator validator, IMeterReading
         {
             try
             {
-                meterReadings = CsvHelpers.CsvHelpers.LoadMeterReadingFromCsv(stream);
+                meterReadings = csvParser.LoadMeterReadingFromCsv(stream);
             }
             catch (Exception ex)
             {

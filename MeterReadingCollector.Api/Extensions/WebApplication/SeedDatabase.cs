@@ -1,5 +1,7 @@
-﻿using MeterReadingCollector.Business.CsvHelpers;
+﻿using CsvHelper;
 using MeterReadingCollector.Data.Context;
+using MeterReadingCollector.Data.Entities;
+using System.Globalization;
 
 namespace MeterReadingCollector.Api.Extensions.WebApplication;
 
@@ -12,7 +14,9 @@ public static class SeedDatabase
 
         var csvPath = Path.Combine(AppContext.BaseDirectory, "SeedData/Test_Accounts.csv");
         if (!File.Exists(csvPath)) return;
-        var accounts = CsvHelpers.LoadAccountsFromCsv(csvPath);
+        using var reader = new StreamReader(csvPath);
+        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+        var accounts = csv.GetRecords<Account>().ToList();
         db.Accounts.AddRange(accounts);
         db.SaveChanges();
     }

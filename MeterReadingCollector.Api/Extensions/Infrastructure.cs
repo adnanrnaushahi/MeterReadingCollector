@@ -1,4 +1,5 @@
-﻿using MeterReadingCollector.Business.Services;
+﻿using MeterReadingCollector.Business.CsvParser;
+using MeterReadingCollector.Business.Services;
 using MeterReadingCollector.Business.Validators;
 using MeterReadingCollector.Data.Repositories;
 
@@ -11,6 +12,7 @@ public static class Infrastructure
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IMeterReadingRepository, MeterReadingRepository>();
 
+        services.AddTransient<ICsvParser, CsvParser>();
         services.AddTransient<IMeterReadingValidator, MeterReadingValidator>();
         services.AddTransient<IMeterReadingService, MeterReadingService>();
     }
