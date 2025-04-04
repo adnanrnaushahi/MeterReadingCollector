@@ -53,6 +53,30 @@ public class MeterReadingValidatorTests
         Assert.Contains(result.Errors, error => error.PropertyName == "AccountId");
         Assert.Contains(result.Errors, error => error.ErrorMessage.Contains("AccountId can't null or zero"));
     }
+
+    [Theory]
+    [InlineData(null, "Meter reading is required.")]
+    [InlineData(-1, "Meter reading must be between 0 and 99999.")]
+    [InlineData(982321, "Meter reading must be between 0 and 99999.")]
+    [InlineData(23423423, "Meter reading must be between 0 and 99999.")]
+    public void Validate_InvalidMeterValues_ReturnsInvalidResult(int reading, string errorMessage)
+    {
+        // Arrange
+        var meterReading = new MeterReading
+        {
+            AccountId = 123,
+            MeterReadingDateTime = DateTime.Now,
+            MeterReadValue = reading
+        };
+
+        // Act
+        var result = _validator.Validate(meterReading);
+
+        // Assert
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, error => error.PropertyName == "MeterReadValue");
+        Assert.Contains(result.Errors, error => error.ErrorMessage.Contains(errorMessage));
+    }
 }
 
 
