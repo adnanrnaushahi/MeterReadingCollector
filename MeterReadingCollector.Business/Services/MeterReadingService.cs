@@ -20,6 +20,13 @@ public class MeterReadingService(IMeterReadingValidator validator, IMeterReading
         foreach (var reading in meterReadings)
         {
             var dto = reading.Map();
+
+            if (dto == null)
+            {
+                response.Failed++;
+                continue;
+            }
+
             var result = validator.Validate(dto);
             if (!result.IsValid)
             {
@@ -48,9 +55,9 @@ public class MeterReadingService(IMeterReadingValidator validator, IMeterReading
         return response;
     }
 
-    private async Task<List<MeterReading>> LoadMeterReadingsFromCvs(IFormFile file)
+    private async Task<List<Reading>> LoadMeterReadingsFromCvs(IFormFile file)
     {
-        List<MeterReading> meterReadings;
+        List<Reading> meterReadings;
         await using var stream = file.OpenReadStream();
         try
         {

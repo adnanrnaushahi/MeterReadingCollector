@@ -55,11 +55,10 @@ public class MeterReadingValidatorTests
     }
 
     [Theory]
-    [InlineData(null, "Meter reading is required.")]
-    [InlineData(-1, "Meter reading must be between 0 and 99999.")]
-    [InlineData(982321, "Meter reading must be between 0 and 99999.")]
-    [InlineData(23423423, "Meter reading must be between 0 and 99999.")]
-    public void Validate_InvalidMeterValues_ReturnsInvalidResult(int reading, string errorMessage)
+    [InlineData(-1)]
+    [InlineData(982321)]
+    [InlineData(23423423)]
+    public void Validate_InvalidMeterValues_ReturnsInvalidResult(int reading)
     {
         // Arrange
         var meterReading = new MeterReading
@@ -75,7 +74,7 @@ public class MeterReadingValidatorTests
         // Assert
         Assert.False(result.IsValid);
         Assert.Contains(result.Errors, error => error.PropertyName == "MeterReadValue");
-        Assert.Contains(result.Errors, error => error.ErrorMessage.Contains(errorMessage));
+        Assert.Contains(result.Errors, error => error.ErrorMessage.Contains("Meter reading must be between 0 and 99999."));
     }
 }
 

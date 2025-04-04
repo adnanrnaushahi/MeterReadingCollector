@@ -1,5 +1,5 @@
 using FluentValidation.Results;
-using MeterReadingCollector.Business.CsvParser;
+using MeterReadingCollector.Business.Csv;
 using MeterReadingCollector.Business.Models;
 using MeterReadingCollector.Business.Services;
 using MeterReadingCollector.Business.Validators;
@@ -34,7 +34,7 @@ public class MeterReadingServiceTests
     {
         //Arrange
 
-        var meterReadings = new List<MeterReading>
+        var meterReadings = new List<Reading>
             {
                 new()  { AccountId = "123", MeterReadingDateTime = DateTime.Now.ToString("O"), MeterReadValue = "2342" },
                 new() { AccountId = "124", MeterReadingDateTime = DateTime.Now.AddDays(-1).ToString("O"), MeterReadValue = "23421" }
@@ -57,7 +57,7 @@ public class MeterReadingServiceTests
     public async Task ProcessCsvFileAsync_WhenValidationFails_ShouldIncrementFailed()
     {
         // Arrange
-        var meterReadings = new List<MeterReading>
+        var meterReadings = new List<Reading>
         {
             new() { AccountId = "123", MeterReadingDateTime = DateTime.Now.ToString("O"), MeterReadValue = "67542342" },
         };
@@ -83,7 +83,7 @@ public class MeterReadingServiceTests
     public async Task ProcessCsvFileAsync_WhenAccountDoesNotExist_ShouldIncrementFailed()
     {
         // Arrange
-        var meterReadings = new List<MeterReading>
+        var meterReadings = new List<Reading>
         {
             new() { AccountId = "123", MeterReadingDateTime = DateTime.Now.ToString("O"), MeterReadValue = "6754" },
         };
@@ -104,7 +104,7 @@ public class MeterReadingServiceTests
     public async Task ProcessCsvFileAsync_WhenMeterReadingAlreadyExists_ShouldIncrementFailed()
     {
         // Arrange
-        var meterReadings = new List<MeterReading>
+        var meterReadings = new List<Reading>
             {
                 new() { AccountId = "123", MeterReadingDateTime = DateTime.Now.ToString("O"), MeterReadValue = "6754" },
             };

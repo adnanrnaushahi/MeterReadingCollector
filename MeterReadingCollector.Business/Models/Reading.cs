@@ -1,6 +1,6 @@
 ﻿namespace MeterReadingCollector.Business.Models;
 
-public class MeterReading
+public class Reading
 {
     public string AccountId { get; set; }
     public string MeterReadingDateTime { get; set; }

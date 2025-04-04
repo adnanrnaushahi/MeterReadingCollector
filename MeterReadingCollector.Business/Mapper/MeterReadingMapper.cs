@@ -4,12 +4,15 @@ namespace MeterReadingCollector.Business.Mapper;
 
 public static class MeterReadingMapper
 {
-    public static Data.Entities.MeterReading Map(this MeterReading reading)
+    public static Data.Entities.MeterReading Map(this Reading reading)
     {
+        if (!DateTime.TryParse(reading.MeterReadingDateTime, out var readingDateTime))
+            return null;
+
         return new Data.Entities.MeterReading
         {
             AccountId = int.Parse(reading.AccountId),
-            MeterReadingDateTime = DateTime.Parse(reading.MeterReadingDateTime),
+            MeterReadingDateTime = readingDateTime,
             MeterReadValue = int.Parse(reading.MeterReadValue)
         };
     }

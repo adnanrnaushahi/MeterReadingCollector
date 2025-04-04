@@ -2,5 +2,5 @@
 
 public  interface ICsvDataExtractor
 {
-    List<Models.MeterReading> LoadMeterReadingFromCsv(Stream stream);
+    List<Models.Reading> LoadMeterReadingFromCsv(Stream stream);
 }

@@ -13,7 +13,6 @@ public class MeterReadingValidator : AbstractValidator<Data.Entities.MeterReadin
             .NotEmpty().WithMessage("MeterReadingDateTime is required.");
 
         RuleFor(x => x.MeterReadValue)
-            .NotNull().WithMessage("Meter reading is required.")
             .Must(ValidReading).WithMessage("Meter reading must be between 0 and 99999.");
 
     }

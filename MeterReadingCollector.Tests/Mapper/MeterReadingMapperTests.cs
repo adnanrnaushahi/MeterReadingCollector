@@ -9,7 +9,7 @@ public class MeterReadingMapperTests
     public void Map_WhenInputIsValid_ShouldReturnMappedMeterReading()
     {
         // Arrange
-        var input = new MeterReading
+        var input = new Reading
         {
             AccountId = "123",
             MeterReadingDateTime = "2025-04-04 12:30:00",
