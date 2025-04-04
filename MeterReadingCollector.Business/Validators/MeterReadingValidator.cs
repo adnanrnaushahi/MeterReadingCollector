@@ -1,0 +1,28 @@
+﻿using FluentValidation;
+using FluentValidation.Results;
+
+namespace MeterReadingCollector.Business.Validators;
+
+public class MeterReadingValidator : AbstractValidator<Data.Entities.MeterReading>, IMeterReadingValidator
+{
+    public ValidationResult Validate(Data.Entities.MeterReading reading)
+    {
+        var result = new ValidationResult();
+
+        RuleFor(x => x.AccountId)
+            .NotNull().GreaterThan(0).WithMessage("AccountId can't null or zero");
+
+        RuleFor(x => x.MeterReadingDateTime)
+            .NotEmpty().WithMessage("MeterReadingDateTime is required.");
+
+        RuleFor(x => x.MeterReadValue)
+            .NotEmpty().WithMessage("MeterReadValue is required.")
+            .Must(ValidReading).WithMessage("MeterReadValue must be between 0 and 99999.");
+
+        return result;
+    }
+    private bool ValidReading(int readingValue)
+    {
+        return readingValue is >= 0 and <= 99999;
+    }
+}

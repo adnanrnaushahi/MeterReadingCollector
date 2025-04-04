@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="CsvHelper" Version="33.0.1" />
+		<PackageReference Include="Fluxera.Extensions.Validation.FluentValidation" Version="8.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MeterReadingCollector.Data\MeterReadingCollector.Data.csproj" />
+	</ItemGroup>
 </Project>
