@@ -62,13 +62,10 @@ public class MeterReadingServiceTests
             new() { AccountId = "123", MeterReadingDateTime = DateTime.Now.ToString("O"), MeterReadValue = "67542342" },
         };
 
-        _mockValidator.Setup(v => v.Validate(It.IsAny<Data.Entities.MeterReading>())).Returns(new ValidationResult {Errors =
-            [
-                new ValidationFailure
-                {
-                    PropertyName = "MeterReadValue"
-                }
-            ]
+        _mockValidator.Setup(v => v.Validate(It.IsAny<Data.Entities.MeterReading>())).Returns(new ValidationResult { 
+            Errors = 
+            { new ValidationFailure("MeterReadValue", "MeterReadValue must be between 0 and 99999.") }
+           
         });
         _mockCsvParser.Setup(p => p.LoadMeterReadingFromCsv(It.IsAny<Stream>())).Returns(meterReadings);
         _mockRepository.Setup(r => r.AccountExistsAsync(It.IsAny<int>())).ReturnsAsync(true);

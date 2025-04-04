@@ -15,18 +15,7 @@ public class MeterReadingService(IMeterReadingValidator validator, IMeterReading
     {
         var response = new MeterReadingResponse();
 
-        List<MeterReading> meterReadings;
-        await using (var stream = file.OpenReadStream())
-        {
-            try
-            {
-                meterReadings = csvParser.LoadMeterReadingFromCsv(stream);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error parsing CSV: {ex.Message}");
-            }
-        }
+        var meterReadings = await LoadMeterReadingsFromCvs(file);
 
         foreach (var reading in meterReadings)
         {
@@ -56,5 +45,21 @@ public class MeterReadingService(IMeterReadingValidator validator, IMeterReading
         }
 
         return response;
+    }
+
+    private async Task<List<MeterReading>> LoadMeterReadingsFromCvs(IFormFile file)
+    {
+        List<MeterReading> meterReadings;
+        await using var stream = file.OpenReadStream();
+        try
+        {
+            meterReadings = csvParser.LoadMeterReadingFromCsv(stream);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error parsing CSV: {ex.Message}");
+        }
+
+        return meterReadings;
     }
 }
